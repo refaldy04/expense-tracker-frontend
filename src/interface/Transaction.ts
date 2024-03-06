@@ -1,3 +1,11 @@
+export type AuthUser = {
+  name: string;
+  profilePicture: string;
+  username: string;
+  __typename: string;
+  _id: string;
+};
+
 export type Transaction = {
   __typename: string;
   _id: string;

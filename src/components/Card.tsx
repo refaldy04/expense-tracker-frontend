@@ -5,7 +5,7 @@ import { FaSackDollar } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { HiPencilAlt } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import { Transaction } from "../interface/Transaction";
+import { AuthUser, Transaction } from "../interface/Transaction";
 import { formDate } from "../utils/formDate";
 import { DELETE_TRANSACTION } from "../graphql/mutations/transaction.mutation";
 import { useMutation } from "@apollo/client";
@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 
 type CardProps = {
   transaction: Transaction;
+  authUser: AuthUser;
 };
 
 const categoryColorMap = {
@@ -22,13 +23,13 @@ const categoryColorMap = {
   // Add more categories and corresponding color classes as needed
 };
 
-const Card = ({ transaction }: CardProps) => {
+const Card = ({ transaction, authUser }: CardProps) => {
   let { category, amount, location, date, paymentType, description, _id } =
     transaction;
 
   const cardClass = categoryColorMap[category];
   const [deleteTransaction, { loading }] = useMutation(DELETE_TRANSACTION, {
-    refetchQueries: ["GetTransactions"],
+    refetchQueries: ["GetTransactions", "GetTransactionStatistics"],
   });
   description = description[0]?.toUpperCase() + description.slice(1);
   category = category[0]?.toUpperCase() + category.slice(1);
@@ -86,7 +87,7 @@ const Card = ({ transaction }: CardProps) => {
         <div className="flex justify-between items-center">
           <p className="text-xs text-black font-bold">{formattedDate}</p>
           <img
-            src={"https://tecdn.b-cdn.net/img/new/avatars/2.webp"}
+            src={authUser.profilePicture}
             className="h-8 w-8 border rounded-full"
             alt=""
           />

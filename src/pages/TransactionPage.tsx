@@ -9,9 +9,14 @@ import TransactionFormSkeleton from "../components/skeletons/TransactionFormSkel
 const TransactionPage = () => {
   const { id } = useParams();
   const { loading, data } = useQuery(GET_TRANSACTION, { variables: { id } });
+  console.log("Transaction data:", data);
 
-  const [updateTransaction, { loading: loadingUpdate }] =
-    useMutation(UPDATE_TRANSACTION);
+  const [updateTransaction, { loading: loadingUpdate }] = useMutation(
+    UPDATE_TRANSACTION,
+    {
+      refetchQueries: ["GetTransactionStatistics", "GetTransactions"],
+    }
+  );
 
   const [formData, setFormData] = useState({
     description: data?.transaction?.description || "",
