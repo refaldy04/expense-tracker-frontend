@@ -7,7 +7,7 @@ import { GridBackground } from "./components/ui/GridBackground.tsx";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://expense-tracker-backend-lake.vercel.app/graphql",
+  uri: "https://expense-tracker-backend-lake.vercel.app:4000/graphql",
   cache: new InMemoryCache(),
   credentials: "include",
 });
