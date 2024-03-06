@@ -10,11 +10,11 @@ const Cards = () => {
 
   console.log("test", authUser);
 
-  const { data: userAndTransactions } = useQuery(GET_AUTHENTICATED_USER, {
-    variables: {
-      userId: authUser?.authUser?._id,
-    },
-  });
+  // const { data: userAndTransactions } = useQuery(GET_AUTHENTICATED_USER, {
+  //   variables: {
+  //     userId: authUser?.authUser?._id,
+  //   },
+  // });
 
   return (
     <div className="w-full px-10 min-h-[40vh]">
