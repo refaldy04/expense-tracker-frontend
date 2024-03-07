@@ -14,9 +14,10 @@ const LoginPage = () => {
   const [login, { loading }] = useMutation(LOGIN, {
     refetchQueries: ["GetAuthenticatedUser"],
     awaitRefetchQueries: true,
-    onCompleted: () => {
-      toast.success("Login success");
+    onCompleted: (data) => {
+      if (!data?.login) return toast.error("Login failed");
     },
+
     onError: (err) => {
       const error = err as Error;
       console.error("Error :", error);
