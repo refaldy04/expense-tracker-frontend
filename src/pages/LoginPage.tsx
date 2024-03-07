@@ -13,6 +13,7 @@ const LoginPage = () => {
 
   const [login, { loading }] = useMutation(LOGIN, {
     refetchQueries: ["GetAuthenticatedUser"],
+    awaitRefetchQueries: true,
     onCompleted: () => {
       toast.success("Login success");
     },
