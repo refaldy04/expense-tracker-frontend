@@ -8,11 +8,14 @@ import Header from "./components/ui/Header";
 import { useQuery } from "@apollo/client";
 import { GET_AUTHENTICATED_USER } from "./graphql/queries/user.query";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 function App() {
   const { loading, data } = useQuery(GET_AUTHENTICATED_USER);
 
-  console.log(data);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   if (loading) return null;
 
