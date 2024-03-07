@@ -11,7 +11,9 @@ import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 
 function App() {
-  const { loading, data } = useQuery(GET_AUTHENTICATED_USER);
+  const { loading, data } = useQuery(GET_AUTHENTICATED_USER, {
+    fetchPolicy: "no-cache",
+  });
 
   useEffect(() => {
     console.log(data);
