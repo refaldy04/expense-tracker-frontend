@@ -16,6 +16,11 @@ const LoginPage = () => {
     onCompleted: () => {
       toast.success("Login success");
     },
+    onError: (err) => {
+      const error = err as Error;
+      console.error("Error :", error);
+      toast.error(error.message);
+    },
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
