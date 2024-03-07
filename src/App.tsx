@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 function App() {
   const { loading, data } = useQuery(GET_AUTHENTICATED_USER, {
-    fetchPolicy: "no-cache",
+    fetchPolicy: "cache-first",
   });
 
   useEffect(() => {
