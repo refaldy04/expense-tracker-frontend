@@ -13,6 +13,9 @@ const LoginPage = () => {
 
   const [login, { loading }] = useMutation(LOGIN, {
     refetchQueries: ["GetAuthenticatedUser"],
+    onCompleted: () => {
+      toast.success("Login success");
+    },
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
